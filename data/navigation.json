@@ -1,0 +1,27 @@
+﻿[
+  {
+    "id": 0,
+    "name": "Главная",
+    "href": "index"
+  },
+  {
+    "id": 1,
+    "name": "Мои счета",
+    "href": "accounts"
+  },
+  {
+    "id": 2,
+    "name": "Платежи",
+    "href": "payments"
+  },
+  {
+    "id": 3,
+    "name": "Переводы",
+    "href": "transfers"
+  },
+  {
+    "id": 4,
+    "name": "Банк",
+    "href": "services"
+  }
+]

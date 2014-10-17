@@ -1,0 +1,41 @@
+﻿<div class="b-header">
+<!--start .h-wrap-->
+	<div class="h-wrap">
+		<a href="" class="b-header__logo"></a>
+		{{view App.UserView}}
+		<div class="b-header__tell"><a href="tel:+78001949465" class="number">{{controller.contact}}</a>Контактный центр</div>
+		<!--start b-main-nav-->
+		<div class="b-main-nav">
+			{{#each nav in controller.content}}
+			<a href="#" class="b-main-nav__el">{{#link-to nav.href}}<span>{{nav.name}}</span>{{/link-to}}</a>
+			{{/each}}
+			<!--<a href="" class="b-main-nav__el curr"><span>Весь банк</span></a>
+			<a href="" class="b-main-nav__el"><span>Мои счета</span></a>
+			<a href="" class="b-main-nav__el"><span>Платежи</span></a>
+			<a href="" class="b-main-nav__el"><span>Переводы</span></a>
+			<a href="" class="b-main-nav__el"><span>Банк</span></a>-->
+		</div>
+		<!--end b-main-nav-->
+	</div>
+<!--end .h-wrap-->
+</div>
+<!--end b-header-->
+<div class="b-header b-header_mobile">
+	<div class="h-wrap">
+		<a href="" class="b-header__login-link"></a>
+		<div class="b-header__menu"></div>
+		<a href="" class="b-header__logo b-header__logo_small"></a>
+	</div>
+</div>
+<div class="h-wrap b-header__menu_toggler">
+	<ul>
+		{{#each nav in controller.content}}
+		<li><a href="{{nav.href}}" class="line">{{nav.name}}</a></li>
+		{{/each}}
+		<!--<li><a href="" class="line">Весь банк</a></li>
+		<li><a href="" class="line">Мои счета</a></li>
+		<li><a href="" class="line">Платежи</a></li>
+		<li><a href="" class="line">Переводы</a></li>
+		<li><a href="" class="line">Банк</a></li>-->
+	</ul>
+</div>
