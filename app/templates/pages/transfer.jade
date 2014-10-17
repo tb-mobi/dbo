@@ -1,0 +1,98 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Перевод между своими счетами';
+
+block scripts
+	+script(['common.js'])
+
+block content
+	.b-content
+		.h-wrap
+			h1 Перевод между своими счетами
+			//start b-transfer
+			.b-transfer
+				.b-transfer__el.b-transfer__el_left
+					h2 Откуда переводим
+					form.b-form
+						.b-form__line
+							label.b-form__label Банк
+							select.b-form__input
+								option(value='') 2Тбанк
+								option(value='') 2Тбанк
+								option(value='') 2Тбанк
+						.b-form__line
+							label.b-form__label Счет
+							.b-form__input.b-form__input_long.b-fselect
+								.b-fselect__main(data-value="0") 
+									span.gray Позитрон  
+									|...002119 
+									.b-fselect__right 180 560
+										span.rubl o
+								ul.b-fselect__dropdown
+									li(data-value="0")
+										span.gray Позитрон  
+										|...002118 
+										.b-fselect__right 180 560
+											span.rubl o
+									li(data-value="1")
+										span.gray Позитрон  
+										|...002117 
+										.b-fselect__right 180 562
+											span.rubl o
+									li(data-value="2")
+										span.gray Позитрон  
+										|...002116 
+										.b-fselect__right 180 563
+											span.rubl o
+						.b-form__line.b-form__line_rubl
+							label.b-form__label Сумма
+							input.b-form__input.js-number-only.js-price.js-sum(type="text", name="", value="250 000")
+						.b-form__line
+							.b-form__label
+							.b-form__sdesc На счету: 180 500
+								span.rubl o
+				.b-transfer__reload
+				.b-transfer__el.b-transfer__el_right
+					h2 Куда переводим
+					form.b-form
+						.b-form__line
+							label.b-form__label Банк
+							select.b-form__input
+								option(value='') Банк 2
+								option(value='') Банк 2
+								option(value='') Банк 2
+						.b-form__line
+							label.b-form__label Счет
+							.b-form__input.b-form__input_long.b-fselect
+								.b-fselect__main(data-value="0") 
+									span.gray На квартиру
+									|...002119 
+									.b-fselect__right 500
+										span $
+								ul.b-fselect__dropdown
+									li(data-value="0")
+										span.gray На квартиру
+										|...002118 
+										.b-fselect__right 500
+											span $
+									li(data-value="1")
+										span.gray На квартиру
+										|...002117 
+										.b-fselect__right 500
+											span $
+									li(data-value="2")
+										span.gray На квартиру
+										|...002116 
+										.b-fselect__right 500
+											span $
+						.b-form__line.b-form__line_dol
+							label.b-form__label Зачислим
+							input.b-form__input.js-number-only.js-price.js-total(type="text", name="", value="62 500",data-procent="0",data-cr="39")
+							.b-form__desc Без комиссии
+						.b-form__line
+							.b-form__label
+							.b-form__sdesc.b-form__sdesc_i Без комиссии
+			//end b-transfer
+			.btn_cont 
+				button.btn Перевести

@@ -1,0 +1,73 @@
+.b-right-menu
+	position fixed
+	top 10px
+	left 2.63157894736842%
+	width 100%
+	opacity 0.95
+	background-color #FF6000
+	background-image linear-gradient(to top, #6ADCC0 0%, #5CBCF3 100%)
+	border-radius 5px
+	z-index 9999
+	width 94.73684210526316%
+	color #fff
+	padding 30px 35px
+	max-height 100%
+	overflow-y auto
+	display none
+	&::-webkit-scrollbar
+		width 0
+	&__close
+		position absolute
+		top 16px
+		right 16px
+		visibility visible
+		display block
+		sprite($popup_close)
+		cursor pointer
+		@media screen and (min-width 760px)
+			display none
+			visibility hidden
+	& a
+		color #fff
+		text-decoration none
+		background linear-gradient(left,rgba(255, 255, 255,.5),rgba(255, 255, 255,.5) 100%)
+		background-position 0 100%
+		background-size 10px 1px
+		background-repeat repeat-x
+	& h3
+		color #fff
+	@media screen and (min-width 760px)
+		width 100%
+		background none
+		position relative
+		top 0
+		left 0
+		background-color #FFF
+		border 3px solid #66d4cd
+		border-radius 10px
+		margin-top 11px
+		padding 20px 18px
+		display block
+		visibility visible
+		opacity 1
+		color #343434
+		& a 
+			color #ff6000
+			text-decoration underline
+			background none
+		& h3
+			color #343434
+	@media screen and (min-width 980px)
+		padding 24px 28px
+		padding-top 22px
+		padding-left 41px
+	&__wrap
+		margin-bottom 22px
+		&:last-child
+			margin-bottom 0
+	&__list
+		padding 0
+		margin 0
+		font-size 14px
+		list-style none
+		line-height 30px

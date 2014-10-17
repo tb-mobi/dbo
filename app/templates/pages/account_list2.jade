@@ -1,0 +1,63 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Перевод между своими счетами';
+
+block scripts
+	+script(['common.js'])
+
+block content
+	.b-content
+		.h-wrap
+			//start h-wrap_left
+			.h-wrap_left 
+				h1 Список счетов
+					span.b-sort 
+						i Сортировать 
+						span.b-sort__toggler по типу
+						span.b-sort__toggler.b-sort__toggler_small Сортировать
+						span.b-sort__dropdown
+							a(href="account_list.html").b-sort__link по банкам
+							a().b-sort__link.b-sort__link_disabled по типу
+			//end h-wrap_left
+
+			//start h-wrap_right
+			.h-wrap_right
+			//end h-wrap_right
+			.clr
+			//start h-wrap_left
+			.h-wrap_left
+				include ../blocks/b-bank_type
+			//end h-wrap_left
+
+			//start h-wrap_right
+			.h-wrap_right
+				.b-right-menu
+					.b-right-menu__close
+					.b-right-menu__wrap
+						h3 Платежи
+						ul.b-right-menu__list
+							li
+								a(href="") Мобильный телефон
+							li
+								a(href="") Интернет
+							li
+								a(href="") Оплата ЖКХ
+							li
+								a(href="") Штрафы
+							li
+								a(href="") Прочее
+					.b-right-menu__wrap
+						h3 Переводы
+						ul.b-right-menu__list
+							li
+								a(href="") Между своими счетами
+							li
+								a(href="") Другому клиенту банка
+							li
+								a(href="") По номеру счета
+							li
+								a(href="") По реквизитам
+							li
+								a(href="") Международный перевод
+			//end h-wrap_right

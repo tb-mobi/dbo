@@ -1,0 +1,50 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Перевод между своими счетами';
+block content
+	.b-content
+		.h-wrap
+			h1 Подтвердите перевод
+			.wrapper
+				section.confirm-section
+					.confirm-info
+						ul.confirm-list
+							li.confirm-item
+								span.confirm-name Со счета
+								span.confirm-value Позитрон 423156000000154967 (RUB)
+							li.confirm-item
+								span.confirm-name Получать
+								span.confirm-value На квартиру
+							li.confirm-item
+								span.confirm-name Счет получателя
+								span.confirm-value 7956234000004649746 (USD)
+							li.confirm-item
+								span.confirm-name Назначение перевода
+								span.confirm-value Перевод между счетами
+							li.confirm-item
+								span.confirm-name Сумма перевода
+								span.confirm-value 62 500 $
+							li.confirm-item
+								span.confirm-name Комиссия
+								span.confirm-value Без комиссии
+							li.confirm-item
+								span.confirm-name Дата
+								span.confirm-value 10 октября 2014
+							li.confirm-item
+								span.confirm-name Время
+								span.confirm-value 12:34:05
+				section.confirm-sms
+					.confirm-sms-box
+						strong.sms-box-title
+							a(href="#" class="sms-box-getpass") Получить пароль
+							|  по СМС
+						form.sms-box-inputs
+							input(value="" placeholder="1234253" class="sms-box-pass")
+							button(type="submit" class="btn") Подтвердить
+					p.confirm-sms-alert
+						| Перед отправкой перевода, пожалуйста, проверьте правильность введенных данных и подтвердите, что данный платеж не связан с расчетами между резидентами и нерезидентами и не является налоговым платежом.
+
+block scripts
+	+script(['common.js'])
+	

@@ -1,0 +1,306 @@
+.b-content
+	padding-top 25px
+	@media screen and (min-width 760px)
+		padding-top 34px
+.b-transfer
+	font-size 0
+	margin-bottom 42px
+	clearfix()
+	line-height 1.25
+	position relative
+	&__operator
+		position absolute
+		top 10px
+		right 10px
+		sprite($megafon)
+	@media screen and (min-width 760px)
+		line-height 245px
+		text-align center
+	@media screen and (min-width 1400px)
+		margin-bottom 60px
+	&__el
+		width 440px
+		display inline-block
+		vertical-align middle
+		width 440px
+		border-radius 10px
+		font-size 14px
+		color #fff
+		text-align left
+		line-height 1.25
+		width 100%
+		padding 15px 18px
+		padding-bottom 5px
+		position relative
+		@media screen and (min-width 760px)
+			width 320px
+			padding 20px
+			padding-bottom 10px
+		@media screen and (min-width 980px)
+			padding 19px 20px
+			padding-bottom 9px
+			width 440px
+		@media screen and (min-width 1400px)
+			width 580px
+			padding 20px 30px
+			padding-bottom 15px
+			&_no_transfer
+				width 49%
+		&_left
+			background-color #6ADCC0
+			background-image linear-gradient(to left, #6ADCC0 0%, #5CBCF3 100%)
+			float none
+			display block
+			margin-bottom 17px
+			@media screen and (min-width 760px)
+				margin-bottom 0
+				display inline-block
+				float left
+			@media screen and (min-width 980px)
+				float left
+				display inline-block
+				vertical-align middle
+		&_right
+			background-color #E0995E
+			background-image linear-gradient(to right, #E0995E 0%, #F5CF87 100%)
+			float none
+			display block
+			@media screen and (min-width 760px)
+				float right
+			@media screen and (min-width 980px)
+				float right
+				display inline-block
+				vertical-align middle
+	&__reload
+		display inline-block
+		vertical-align middle
+		sprite($reload)
+		cursor pointer
+		transition transform 0s linear
+		display none
+		position absolute
+		top 50%
+		left 50%
+		margin-top -14.5px
+		margin-left -14.5px
+		@media screen and (min-width 760px)
+			display inline-block
+		&.clicked
+			transform rotate(360deg)
+			transition transform .8s linear
+.b-form
+	&__desc
+		font-size 146h 24px
+		line-height 24px
+		position absolute
+		top 0
+		left 100%
+		padding-left 20px
+		color #FFF
+		font-size 14px
+		font-style italic
+		white-space nowrap
+		visibility hidden
+		&_reg
+			font-style normal
+		@media screen and (min-width 480px)
+			visibility visible
+		@media screen and (min-width 760px)
+			visibility hidden
+		@media screen and (min-width 980px)
+			visibility visible
+		@media screen and (min-width 1400px)
+			height 28px
+			line-height 28px
+	&__tell-bl
+		display inline-block
+		vertical-align middle
+		padding-left 10px
+		& span
+			font-size 14px
+			display inline-block
+			vertical-align middle
+			margin-right 10px
+			@media screen and (min-width 1400px)
+				font-size 18px
+	&__line
+		font-size 0
+		margin-bottom 15px
+		&:last-child
+			margin-bottom 0
+		@media screen and (min-width 1400px)
+			margin-bottom 20px
+		&_rubl
+			position relative
+			width auto
+			display inline-block
+			&:after
+				position absolute
+				top 0
+				height 24px
+				line-height 24px
+				@media screen and (min-width 1400px)
+					line-height 28px
+				right 7px
+				content 'o'
+				font-family 'als_rublregular'
+				display inline-block
+				font-size 14px
+				color #343434
+		&_dol
+			position relative
+			width auto
+			display inline-block
+			&:after
+				position absolute
+				top 0
+				height 24px
+				line-height 24px
+				@media screen and (min-width 1400px)
+					line-height 28px
+				right 7px
+				content '$'
+				display inline-block
+				font-size 14px
+				color #343434
+	&__label
+		display inline-block
+		vertical-align middle
+		width 81px
+		font-size 14px
+		min-height 1px
+		@media screen and (min-width 1400px)
+			font-size 18px
+			width 100px
+	&__sdesc
+		display inline-block
+		vertical-align middle
+		height 24px
+		line-height 24px
+		color #FFF
+		font-size 12px
+		font-weight 400
+		margin-top -15px
+		&_i
+			font-style italic
+		visibility visible
+		@media screen and (min-width 480px)
+			visibility hidden
+		@media screen and (min-width 760px)
+			visibility visible
+		@media screen and (min-width 980px)
+			visibility hidden
+	&__input
+		width 138px
+		height 24px
+		&_mobile
+			width 141px
+			@media screen and (min-width 480px)
+				width 171px
+		&.js-code
+			width 30px
+			text-align center
+			line-height 1
+			margin-right 10px
+			padding 0 2px
+			font-size 13px
+			@media screen and (min-width 480px)
+				font-size 14px
+				width 40px
+		&.js-number-body
+			width 65px
+			padding 0 2px
+			font-size 13px
+			@media screen and (min-width 480px)
+				width 81px
+				font-size 14px
+		@media screen and (min-width 1400px)
+			height 28px
+			line-height 28px
+			font-size 18px
+		background-color #FFF
+		border-radius 3px
+		box-shadow inset 0.5px 0.9px 2px rgba(0, 1, 3, 0.2)
+		border none
+		outline none
+		color #343434
+		font-size 14px
+		font-weight 400
+		display inline-block
+		vertical-align middle
+		padding 0 5px
+		&_long
+			width 60%
+			@media screen and (min-width 480px)
+				width 70%
+			@media screen and (min-width 760px)
+				width 180px
+				white-space nowrap
+			@media screen and (min-width 980px)
+				width 310px
+			@media screen and (min-width 1400px)
+				width 415px
+
+.gray
+	color #767676
+
+.b-fselect
+	position relative
+	&__main
+		display block
+		height 24px
+		line-height 24px
+		white-space nowrap
+		overflow hidden
+		@media screen and (min-width 1400px)
+			height 28px
+			line-height 28px
+			font-size 18px
+		width 100%
+		clearfix()
+		padding-right 30px
+		cursor pointer
+		position relative
+		&:after
+			content ''
+			display inline-block
+			position absolute
+			top 50%
+			right 8px
+			sprite($toggle)
+			margin-top -2px
+	&__right
+		visibility hidden
+		@media screen and (min-width 480px)
+			visibility visible
+			float right
+		@media screen and (min-width 760px)
+			visibility hidden
+		@media screen and (min-width 980px)
+			visibility visible
+	&__dropdown
+		position absolute
+		top 24px
+		@media screen and (min-width 1400px)
+			top 28px
+			font-size 18px
+		left 0
+		width 100%
+		background-color #fff
+		box-shadow 0 0 1px rgba(0,0,0,.5)
+		display none
+		z-index 3
+		&>li
+			padding 3px 32px 3px 5px
+			cursor pointer
+			clearfix()
+			&:hover
+				background-color #1E90FF
+				color #fff
+				&>.gray
+					color #fff
+
+.btn_cont
+	text-align center
+	@media screen and (min-width 760px)
+		text-align left

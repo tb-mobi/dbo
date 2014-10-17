@@ -1,0 +1,51 @@
+//start b-header
+.b-header
+	//start .h-wrap
+	.h-wrap
+		a(href="").b-header__logo Темпл банк. Мой Банк - моя крепость
+
+		.b-header__user
+			p Здравствуйте, 
+				strong Павел Александрович
+				|!
+			.links
+				a(href="").line Настройки
+				a.red.enter(href="")
+					span Выйти
+
+		.b-header__tell
+			a(href="tel:+78001949465").number 8 (800) 194-94-65
+			|Контактный центр
+		
+		//start b-main-nav
+		.b-main-nav 
+			a.b-main-nav__el.curr(href="")
+				span Весь банк
+			a.b-main-nav__el(href="")
+				span Мои счета                          
+			a.b-main-nav__el(href="")
+				span Платежи
+			a.b-main-nav__el(href="")
+				span Переводы
+			a.b-main-nav__el(href="")
+				span Банк
+		//end b-main-nav
+	//end .h-wrap
+//end b-header
+.b-header.b-header_mobile
+	.h-wrap
+		a(href="").b-header__login-link
+		.b-header__menu
+		a(href="").b-header__logo.b-header__logo_small
+.h-wrap.b-header__menu_toggler
+	ul
+		li
+			a.line(href="") Весь банк
+		li
+			a.line(href="") Мои счета
+		li
+			a.line(href="") Платежи
+		li
+			a.line(href="") Переводы
+		li
+			a.line(href="") Банк
