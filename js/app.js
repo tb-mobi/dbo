@@ -28,6 +28,7 @@
 			}
 		}
 		,ready:function(){}
+		,LOG_TRANSITIONS: true
 	});
 	/************************************************
 	 * Exception handler
@@ -94,9 +95,9 @@
 		,currency:null
 		,mask:null
 	});
-	App.AccountsController = Ember.ArrayController.create({
-		content: []
-		,currentAccount:null
+	App.AccountsController = Ember.Controller.extend({
+		currentAccount:null
+		,accounts:Ember.ArrayController.create({content:[]})
 		,initialize:function(){
 			var tut = this;
 			$.getJSON(App.options.pso.url+'accounts/',{sessionid:App.options.pso.sessionid}).success(function(data){
@@ -112,7 +113,7 @@
 					// end debug
 					var acc=App.Account.create(row);
 					if(tut.get("currentAccount")==null)tut.set("currentAccount",acc);
-					tut.pushObject(acc);
+					tut.get("accounts").pushObject(acc);
 					++i;
 				});
 			});
@@ -127,28 +128,25 @@
 			return false;
 		}
 	});
-	App.AccountComboView = Ember.View.extend({
+	/*App.AccountComboView = Ember.View.extend({
 		template: getView('accounts.combo')
 		,init: function () {
 			this._super();
 			this.set('controller', App.AccountsController);
 		}
 		,name: "AccountComboView"
-	});
+	});*/
+	App.accountsController=App.AccountsController.create();
 	App.AccountsView =Ember.View.extend({
 		template: getView('account.list')
 		,templateName:"accounts"
 		,name:'accounts'
 		,init: function () {
 			this._super();
-			this.set('controller', App.AccountsController);
+			this.set('controller', App.accountsController);
 		}
 	});
-	App.AccountsRoute = Ember.Route.extend({
-		model:function(){
-			return App.AccountsController;
-		}
-	});
+	App.Accounts = DS.Model.extend();
 	/************************************************
 	 * User
 	 ************************************************/
@@ -176,7 +174,7 @@
 				tut.set("name",n);
 				console.log("PSO sessionId:"+tut.get("psoSessionId"));
 				console.log("Client name:"+n.first+" "+n.middle+" "+n.last);
-				App.AccountsController.initialize();
+				//App.AccountsController.initialize();
 			}});
 		}
 	});
@@ -265,9 +263,15 @@
 		}
 	});
 	App.Router.map(function(){
-		this.resource('accounts');
-		this.resource('payments');
+		this.resource('accounts',{path:'/accounts'});
+		this.resource('payments',{path:'/payments'});
 		this.resource('transfers');
 		this.resource('services');
 	});
+	App.AccountsRoute=Ember.Route.extend({
+		model:function(){
+			return App.accountsController.initialize();
+		}
+	});
+	
 })(window);
