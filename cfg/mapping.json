@@ -1,0 +1,6 @@
+{
+	"accounts":{
+		"className":"Accounts"
+		,"template":"account.list"
+	}
+}

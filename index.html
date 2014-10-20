@@ -1,34 +1,92 @@
 ﻿<!DOCTYPE html>
 <html lang="ru">
-<head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link sizes="57x57" href="apple-touch-icon-57x57.png" rel="apple-touch-icon">
-	<link sizes="114x114" href="apple-touch-icon-114x114.png" rel="apple-touch-icon">
-	<link sizes="72x72" href="apple-touch-icon-72x72.png" rel="apple-touch-icon">
-	<link sizes="144x144" href="apple-touch-icon-144x144.png" rel="apple-touch-icon">
-	<link sizes="60x60" href="apple-touch-icon-60x60.png" rel="apple-touch-icon">
-	<link sizes="120x120" href="apple-touch-icon-120x120.png" rel="apple-touch-icon">
-	<link sizes="76x76" href="apple-touch-icon-76x76.png" rel="apple-touch-icon">
-	<link sizes="152x152" href="apple-touch-icon-152x152.png" rel="apple-touch-icon">
-	<link sizes="180x180" href="apple-touch-icon-180x180.png" rel="apple-touch-icon">
-	<link sizes="192x192" href="favicon-192x192.png" rel="icon" type="image/png">
-	<link sizes="160x160" href="favicon-160x160.png" rel="icon" type="image/png">
-	<link sizes="96x96" href="favicon-96x96.png" rel="icon" type="image/png">
-	<link sizes="16x16" href="favicon-16x16.png" rel="icon" type="image/png">
-	<link sizes="32x32" href="favicon-32x32.png" rel="icon" type="image/png">
-	<title id="title">Temple Bank App</title>
-	<link href="dist/assets/styles/common.css?1413051933147" rel="stylesheet">
-	<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">-->
-	<script src="../lib/jquery/2.1.1/jquery.js"></script>
-	<script src="../lib/handlebars.js/2.0.0/handlebars.js"></script>
-	<script src="js/pso.js"></script>
-	<script src="js/temple.js"></script>
-</head>
-<body>
-	
-	<script src="dist/assets/scripts/debug.js?1413051933147"></script>
-	<script src="dist/assets/scripts/mask.js?1413051933147"></script>
-	<script src="dist/assets/scripts/common.js?1413051933147"></script>
-</body>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link sizes="57x57" href="apple-touch-icon-57x57.png" rel="apple-touch-icon">
+		<link sizes="114x114" href="apple-touch-icon-114x114.png" rel="apple-touch-icon">
+		<link sizes="72x72" href="apple-touch-icon-72x72.png" rel="apple-touch-icon">
+		<link sizes="144x144" href="apple-touch-icon-144x144.png" rel="apple-touch-icon">
+		<link sizes="60x60" href="apple-touch-icon-60x60.png" rel="apple-touch-icon">
+		<link sizes="120x120" href="apple-touch-icon-120x120.png" rel="apple-touch-icon">
+		<link sizes="76x76" href="apple-touch-icon-76x76.png" rel="apple-touch-icon">
+		<link sizes="152x152" href="apple-touch-icon-152x152.png" rel="apple-touch-icon">
+		<link sizes="180x180" href="apple-touch-icon-180x180.png" rel="apple-touch-icon">
+		<link sizes="192x192" href="favicon-192x192.png" rel="icon" type="image/png">
+		<link sizes="160x160" href="favicon-160x160.png" rel="icon" type="image/png">
+		<link sizes="96x96" href="favicon-96x96.png" rel="icon" type="image/png">
+		<link sizes="16x16" href="favicon-16x16.png" rel="icon" type="image/png">
+		<link sizes="32x32" href="favicon-32x32.png" rel="icon" type="image/png">
+		<title id="title">Temple Bank App</title>
+		<link href="dist/assets/styles/common.css?1413051933147" rel="stylesheet">
+		<!--<link href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,600italic,700italic,800italic,400,300,600,700,800&amp;subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">-->
+		<script src="../lib/jquery/2.1.1/jquery.js"></script>
+		<script src="../lib/jquery/plugin/carhartl-jquery-cookie/jquery.cookie.js"></script>
+		<script src="../lib/handlebars.js/2.0.0/handlebars.js"></script>
+		<script src="js/pso.js"></script>
+		<script src="js/temple.js"></script>
+		<!--<script src="dist/assets/scripts/debug.js?1413051933147"></script>-->
+		<script src="dist/assets/scripts/mask.js"></script>
+		<script src="dist/assets/scripts/common.js"></script>
+	</head>
+	<body>
+		<div class="b-page">
+			<!--start b-header-->
+			<div class="b-header">
+				<!--start .h-wrap-->
+				<div class="h-wrap"><a href="" class="b-header__logo">Темпл банк. Мой Банк - моя крепость</a>
+					<div class="b-header__user" id="headerUser">
+						<p>Здравствуйте, <strong>Павел Александрович</strong>!</p>
+						<div class="links"><a href="" class="line">Настройки</a><a href="" class="red enter"><span>Выйти</span></a>
+						</div>
+					</div>
+					<div class="b-header__tell"><a href="tel:+78001949465" class="number">8 (800) 194-94-65</a>Контактный центр</div>
+					<!--start b-main-nav-->
+					<div class="b-main-nav" id="navTop"><a href="" class="b-main-nav__el curr"><span>Весь банк</span></a><a href="" class="b-main-nav__el"><span>Мои счета</span></a><a href="" class="b-main-nav__el"><span>Платежи</span></a><a href="" class="b-main-nav__el"><span>Переводы</span></a><a href=""
+						class="b-main-nav__el"><span>Банк</span></a>
+					</div>
+					<!--end b-main-nav-->
+				</div>
+				<!--end .h-wrap-->
+			</div>
+			<!--end b-header-->
+			<div class="b-header b-header_mobile">
+				<div class="h-wrap">
+					<a href="" class="b-header__login-link"></a>
+					<div class="b-header__menu"></div>
+					<a href="" class="b-header__logo b-header__logo_small"></a>
+				</div>
+			</div>
+			<div class="h-wrap b-header__menu_toggler">
+				<ul>
+					<li><a href="" class="line">Весь банк</a>
+					</li>
+					<li><a href="" class="line">Мои счета</a>
+					</li>
+					<li><a href="" class="line">Платежи</a>
+					</li>
+					<li><a href="" class="line">Переводы</a>
+					</li>
+					<li><a href="" class="line">Банк</a>
+					</li>
+				</ul>
+			</div>
+			<div class="b-content" id="content">
+			</div>
+		</div>
+		<div class="b-footer">
+			<div class="h-wrap">
+				<div class="b-footer__copy">© 2014 ТЕМПЛ Банк</div><a href="+78001949465" class="b-footer__tell">8 (800) 194-94-65</a>
+				<nav class="b-footer__menu"><a href="" class="b-footer__link line">Правила                </a><a href="" class="b-footer__link line">Условия использования</a><a href="" class="b-footer__link line">Оферта</a><a href="" class="b-footer__link line">Тарифы</a>
+				</nav>
+			</div>
+		</div>
+		<div class="b-footer b-footer_mobile">
+			<div class="h-wrap"><a href="+78001949465" class="b-footer__tell">8 (800) 194-94-65</a>
+				<nav class="b-footer__menu"><a href="" class="b-footer__link line">Правила                </a><a href="" class="b-footer__link line">Условия использования</a><a href="" class="b-footer__link line">Оферта</a><a href="" class="b-footer__link line">Тарифы</a>
+				</nav>
+				<div class="b-footer__copy">© 2014 ТЕМПЛ Банк</div>
+			</div>
+		</div>
+	</body>
 </html>
