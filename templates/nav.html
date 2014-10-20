@@ -1,0 +1,8 @@
+﻿<div class="b-main-nav">
+{{#unless controller.navigation.length}}
+no menu
+{{/unless}}
+{{#each nav in controller.navigation}}
+{{#link-to 'nav.href'}}{{nav.name}}{{/link-to}}
+{{/each}}
+</div>
