@@ -9,12 +9,8 @@
 		,"template":"operation.list"
 		,"object":"operations"
 	}
-	,"exception":{
-		"className":"Exception"
-		,"template":"error"
-	}
-	,"confirmation":{
-		"className":"Confirm"
-		,"template":"confirm"
+	,"transfer":{
+		"className":"TransferLocal"
+		,"template":"transfer"
 	}
 }

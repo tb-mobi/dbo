@@ -12,6 +12,14 @@
 function capitaliseFirstLetter(string){
     return string.charAt(0).toUpperCase() + string.slice(1);
 }
+function getClass(obj) {
+  if (typeof obj === "undefined")
+    return "undefined";
+  if (obj === null)
+    return "null";
+  return Object.prototype.toString.call(obj)
+    .match(/^\[object\s(.*)\]$/)[1];
+}
 window.psoUrl="/pso/"
 $(function(){
 	var addapter=new dbo.PSOAdapter({

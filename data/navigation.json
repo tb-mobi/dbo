@@ -19,8 +19,7 @@
 	  {
 		"id": 3,
 		"name": "Переводы",
-		"href": "transfers",
-		"disabled":true
+		"href": "transfer"
 	  },
 	  {
 		"id": 4,
@@ -36,7 +35,7 @@
 	  {
 		"id": 6,
 		"name": "Confirm",
-		"href": "confirmation"
+		"href": "confirm"
 	  }
 	]
 }

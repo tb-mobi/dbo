@@ -116,15 +116,22 @@ dbo.Router=function(){
 			var href=$(this).attr("href");
 			if(href.length){
 				tut.route(href);
-				$(this).parent().find("a").removeClass("active");
-				$(this).addClass("active");
+				$(this).parent().find("a").removeClass("curr");
+				$(this).addClass("curr");
 			}
 			return false;
 		});
 	}
 	tut.throwException=function(e){
-		var p={template:getTemplate('error'),container:$("#content")};
-		$.extend(p,e);
+		var p={template:getTemplate('exception'),container:$("#content")};
+		console.error("Exception occurs "+getClass(e));
+		if(getClass(e)=="Error"){
+			$.extend(p,{
+				code:(typeof e.code!="undefiend")?e.code:400
+				,message:(typeof e.message!="undefiend")?e.message:400
+			});
+		}
+		else {$.extend(p,e);}
 		var ex=new dbo.Exception(p);
 		ex.show();
 	}
@@ -225,7 +232,6 @@ dbo.Accounts=function(){
 	$.extend(tut,{
 		show:function(){
 			(tut.container!=null)?tut.container.html(tut.template(tut)):null;
-			(tut.callback!=null)?tut.callback(tut.list):null;
 			tut.__afterAll();
 		}
 		,init:function(){
@@ -242,11 +248,34 @@ dbo.Accounts=function(){
 					};
 					$.extend(tut.list[i],adds);
 				});
+				(tut.callback!=null)?tut.callback(tut.list):null;
 			});
 		}
 	});
 	$.extend(tut,arguments[0]);
 	tut.init();
+}
+dbo.TransferLocal=function(){
+	var tut=this;
+	var args=(arguments.length)?arguments[0]:null;
+	tut.accounts=null;
+	tut.current=null;
+	tut.another=null;
+	$.extend(tut,new dbo.Model(args));
+	tut.show=function(){
+		tut.accounts=new dbo.Accounts({
+			products:tut.products
+			,sessionId:tut.sessionId
+			,names:tut.names
+			,callback:function(){
+				tut.current=tut.accounts.list[0];
+				tut.current=tut.accounts.list[tut.accounts.list.length-1];
+				(tut.container!=null)?tut.container.html(tut.template(tut)):null;
+				(tut.callback!=null)?tut.callback(tut.list):null;
+				tut.__afterAll();
+			}
+		});
+	};
 }
 dbo.Operations=function(){
 	var tut=this;
