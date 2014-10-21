@@ -9,6 +9,9 @@
     });
     return Handlebars.compile(template);
 };
+function capitaliseFirstLetter(string){
+    return string.charAt(0).toUpperCase() + string.slice(1);
+}
 window.psoUrl="/pso/"
 $(function(){
 	var addapter=new dbo.PSOAdapter({

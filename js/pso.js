@@ -55,13 +55,26 @@ dbo.Confirm=function(){
 	var args=(arguments.length)?arguments[0]:null;$.extend(tut,new dbo.Model(args));
 	//$.extend(tut,new dbo.Model());(arguments.length)?$.extend(tut,arguments[0]):{};
 }
+dbo.Success=function(){
+	var tut=this;
+	tut.operation="Перевод";
+	tut.operationName="Перевод между счетами";
+	tut.description="Перевод средств между счетами будет исполнен в течении 3 дней. Если этого не произойдет, обратитесь в <a href=\"#\">службу поддержки</a> ТЕМПЛ Банка.";
+	var args=(arguments.length)?arguments[0]:null;$.extend(tut,new dbo.Model(args));
+	//$.extend(tut,new dbo.Model());(arguments.length)?$.extend(tut,arguments[0]):{};
+}
 dbo.Router=function(){
 	var tut=this;
 	tut.adapter=arguments[0];
 	tut.map=null;
 	tut.route=function(href){
-		var obj=tut.getObject(href);
-		(obj!=null)?obj.show(obj):{};
+		try{
+			var obj=tut.getObject(href);
+			(obj!=null)?obj.show(obj):{};
+		}
+		catch(e){
+			tut.throwException(e);
+		}
 	}
 	tut.getObject=function(href){
 		var arr=href.split('?');
@@ -69,7 +82,21 @@ dbo.Router=function(){
 		console.debug("routing to "+url);
 		var data=(arr.length>1)?"{"+arr[1]+"}":null;
 		var link=tut.map[url];
-		if(typeof link=="undefined")return null;
+		if(typeof link=="undefined"){
+			if(typeof dbo[capitaliseFirstLetter(url)]!="undefined"){
+				link={
+					className:capitaliseFirstLetter(url)
+					,template:url
+				}
+			}else{ 
+				var error={
+					code:400
+					,message:"Запрашиваемая страница на данный момент не доступна"
+					,todo:"Попробуйте повторить операцию позднее."
+				};
+				throw error;
+			}
+		};
 		var ret=(typeof link.object!="undefined"&&link.object!=null&&link.object!="null")?tut.adapter[link.object]:null;
 		if(typeof ret=='undefined'||ret==null){
 			console.debug("input data ["+data+"]")
@@ -95,9 +122,13 @@ dbo.Router=function(){
 			return false;
 		});
 	}
-	$.getJSON("cfg/mapping.json").success(function(){
-		tut.map=arguments[0];
-	});
+	tut.throwException=function(e){
+		var p={template:getTemplate('error'),container:$("#content")};
+		$.extend(p,e);
+		var ex=new dbo.Exception(p);
+		ex.show();
+	}
+	$.getJSON("cfg/mapping.json").success(function(){tut.map=arguments[0];});
 	tut.catcha();
 }
 dbo.PSOAdapter=function(){

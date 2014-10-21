@@ -29,13 +29,13 @@
 		"disabled":true
 	  },
 	  {
-		"id": 5,
-		"name": "Тест Exception",
-		"href": "exception?\"code\":\"100\",\"message\":\"unknown\",\"todo\":\"go home\""
+		"id": 6,
+		"name": "Success",
+		"href": "success"
 	  },
 	  {
 		"id": 6,
-		"name": "Тест ",
+		"name": "Confirm",
 		"href": "confirmation"
 	  }
 	]
