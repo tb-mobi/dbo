@@ -43,16 +43,15 @@
 							<i class="visa"></i>
 							{{/if}}
 						</div>
-					{{/each}}
-					
+					{{/each}}					
 					<div class="b-bank__hide">
-						<div class="b-bank__type_role">{{type}}</div><a href="" class="line">История операций</a>
+						<div class="b-bank__type_role">{{type}}</div><a href="operations?account:{{number}}" class="line">История операций</a>
 					</div>
 				</div>
 				<div class="b-bank__type">
 					<div class="b-bank__type_number">{{number}}</div>
 					<div class="b-bank__show">
-						<div class="b-bank__type_role">{{type}}</div><a href="" class="line">История операций</a>
+						<div class="b-bank__type_role">{{type}}</div><a href='operations?"account":"{{number}}"' class="line">История операций</a>
 					</div>
 				</div>
 			</div>
@@ -128,4 +127,40 @@
 	</div>
 	<!--end b-bank-->
 </div>
+<div class="h-wrap_right">
+						<div class="b-right-menu">
+							<div class="b-right-menu__close"></div>
+							<div class="b-right-menu__wrap">
+								<h3>Платежи</h3>
+								<ul class="b-right-menu__list">
+									<li><a href="">Мобильный телефон</a>
+									</li>
+									<li><a href="">Интернет</a>
+									</li>
+									<li><a href="">Оплата ЖКХ</a>
+									</li>
+									<li><a href="">Штрафы</a>
+									</li>
+									<li><a href="">Прочее</a>
+									</li>
+								</ul>
+							</div>
+							<div class="b-right-menu__wrap">
+								<h3>Переводы</h3>
+								<ul class="b-right-menu__list">
+									<li><a href="">Между своими счетами</a>
+									</li>
+									<li><a href="">Другому клиенту банка</a>
+									</li>
+									<li><a href="">По номеру счета</a>
+									</li>
+									<li><a href="">По реквизитам</a>
+									</li>
+									<li><a href="">Международный перевод</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					
 </div>

@@ -26,39 +26,58 @@ dbo.ListObject=function(){
 };
 dbo.Router=function(){
 	var tut=this;
+	tut.adapter=arguments[0];
 	tut.map=null;
-	tut.route=function(link){
-		new dbo[link.className.charAt(0).toUpperCase() + link.className.slice(1)]({
-			template:getTemplate(link.template)
-			,container:$("#content")
-		});
+	tut.route=function(href){
+		var arr=href.split('?');
+		var url=(arr.length>1)?arr[0]:href;
+		var data=(arr.length>1)?"{"+arr[1]+"}":null;
+		var obj=tut.getObject(url);
+		obj.show(data);
 	}
-	$("a").each(function(){
-		//console.debug("prevent default action to "+$(this).attr("href")+" of "+$(this).text());
-		$(this).click(function(event) {
+	tut.getObject=function(url){
+		var link=tut.map[url];
+		var ret=tut.adapter[link.object];
+		if(typeof ret=='undefined'||ret==null){
+			var params={
+				container:$("#content")
+				,template:getTemplate(link.template)
+			};
+			$.extend(params,tut.adapter);
+			ret=new dbo[link.className](params);
+			tut.adapter[link.object]=ret;
+		}
+		return ret;
+	}
+	tut.catcha=function(){
+		console.debug("catched "+$("a").length);
+		$("a").unbind('click').on('click',function(event) {
 			event.preventDefault();
 			var href=$(this).attr("href");
-			//console.debug("routing to "+href);
-			var link=tut.map[href];
-			if(typeof link=="undefined")return false;
-			tut.route(link);
+			if(href.length){
+				console.debug("routing to "+href);
+				tut.route(href);
+				$(this).addClass("active");
+			}
 			return false;
-		})
-	});
+		});
+	}
 	$.getJSON("cfg/mapping.json").success(function(){
 		tut.map=arguments[0];
 	});
+	tut.catcha();
 }
 dbo.PSOAdapter=function(){
 	var tut=this;
 	$.extend(tut,new dbo.Object());
 	$.extend(tut,{
-		id:null
+		sessionId:null
 		,login:null
 		,password:null
 		,accounts:null
+		,operations:null
 		,products:new dbo.Products()
-		,router:new dbo.Router()
+		,router:new dbo.Router(tut)
 		,phone:null
 		,names:null
 		,name:{
@@ -71,7 +90,7 @@ dbo.PSOAdapter=function(){
 			$.ajax(tut.url+"signin/",{async:false,dataType:"json",data:{login:tut.login,pass:tut.password},success:function(p,s,x){
 				var usr=p.fullName.split(" ");
 				$.cookie('pso_session',p.sessionId);
-				tut.id=p.sessionId;
+				tut.sessionId=p.sessionId;
 				tut.name={
 					first:usr[1]
 					,middle:usr[2]
@@ -83,16 +102,23 @@ dbo.PSOAdapter=function(){
 				tut.accounts=new dbo.Accounts({
 					template:getTemplate('account.list')
 					,container:$("#content")
+					,callback:function(){tut.router.catcha();}
 					,products:tut.products
-					,sessionId:tut.id
+					,sessionId:tut.sessionId
 					,names:tut.names
 				});
 				tut.phone=new dbo.Phone();
+				tut.__afterAll();
+				tut.router.catcha();
 			}});
 		}
 	});
 	if(arguments.length){$.extend(tut,arguments[0]);}
 	$.getJSON("data/accountNames.json").success(function(){tut.names=arguments[0];});
+	$.getJSON("data/navigation.json").success(function(){
+		$("#navTop").html(getTemplate('nav.top')(arguments[0]));
+		tut.router.catcha();
+	});
 }
 dbo.Phone=function(){
 	var tut=this;
@@ -132,55 +158,67 @@ dbo.Accounts=function(){
 	var tut=this;
 	$.extend(tut,new dbo.ListObject());
 	$.extend(tut,{
-		sessionId:$.cookie('pso_session')
+		show:function(){
+			(tut.container!=null)?tut.container.html(tut.template(tut)):null;
+			(tut.callback!=null)?tut.callback(tut.list):null;
+			tut.__afterAll();
+		}
+		,init:function(){
+			$.getJSON(((tut.url!=null)?tut.url:psoUrl)+"accounts/",{sessionid:tut.sessionId}).success(function(){
+				psoResponse=(arguments.length>0)?arguments[0]:false;
+				if(!psoResponse)return;
+				tut.list=psoResponse;
+				console.log("Accounts "+tut.list.length);
+				$.each(psoResponse,function(i,item){
+					var adds={
+						type:tut.products.findById(item.product)
+						,name:"Позитрон"//(typeof item.name!="undefined")?item.name:tut.names[item.product]
+						,mask:item.number.substr(16)
+					};
+					$.extend(tut.list[i],adds);
+				});
+			});
+		}
 	});
 	$.extend(tut,arguments[0]);
-	$.getJSON((tut.url!=null)?tut.url:psoUrl+"accounts/",{sessionid:tut.sessionId}).success(function(){
-		psoResponse=(arguments.length>0)?arguments[0]:false;
-		if(!psoResponse)return;
-		tut.list=psoResponse;
-		$.each(psoResponse,function(i,item){
-			var adds={
-				type:tut.products.findById(item.product)
-				,name:"Позитрон"//(typeof item.name!="undefined")?item.name:tut.names[item.product]
-				,mask:item.number.substr(16)
-			};
-			$.extend(tut.list[i],adds);
-		});
-		if(tut.container!=null)tut.container.html(tut.template(tut));
-		(tut.callback!=null)?tut.callback(tut.list):null;
-		console.log("Accounts:");
-		tut.__afterAll();
-	});
+	tut.init();
 }
 dbo.Operations=function(){
-	if(arguments.length==0)return null;
 	var tut=this;
-	this.sessionId=arguments[0];
-	this.accountId=arguments[1];
-	this.dateFrom=arguments[2];
-	this.dateTo=arguments[3];
-	this._list=[];
-	this.get=function(){
-		if(arguments.length==0)return false;
-		var searchId=arguments[0];
-		for(i in tut._list){
-			var row=tut._list[i];
-			if(row.id==searchId) return row;
+	$.extend(tut,new dbo.ListObject());
+	$.extend(tut,{
+		sessionId:$.cookie('pso_session')
+		,accountId:null
+		,dateFrom:null
+		,dateTo:null
+		,findById:function(){
+			if(arguments.length==0)return false;
+			var searchId=arguments[0];
+			for(i in tut._list){
+				var row=tut._list[i];
+				if(row.id==searchId) return row;
+			}
+			return false;
 		}
-		return false;
-	}
-	this.getList=function(){return tut._list;}
-	$.getJSON(psoAdapter._url+"operations/",{request:"PSOCabinGetOpersPeriod2",temp_id:tut.sessionId,acc_id:tut.accountId,date_beg:tut.dateFrom,date_end:tut.dateTo}).success(function(){
-		psoResponse=(arguments.length>0)?arguments[0]:false;
-		if(!psoResponse)return;
-		tut._list=psoResponse;
-		console.log("Operations for ["+tut.accountId+"]:");
-		for(i in psoResponse){
-			var row=psoResponse[i];
-			console.log("    "+row.date+"    "+row.description.replace(/[\r\n]+/im,"")+"    "+row.amount);
+		,show:function(){
+			var params=$.parseJSON(arguments[0]);
+			$.extend(params,{sessionid:tut.sessionId});
+			$.getJSON(((tut.url!=null)?tut.url:psoUrl)+"operations/",params).success(function(){
+				psoResponse=(arguments.length>0)?arguments[0]:false;
+				if(!psoResponse)return;
+				tut._list=psoResponse;
+				console.log("Operations for ["+tut.accountId+"]:");
+				for(i in psoResponse){
+					var row=psoResponse[i];
+					console.log("    "+row.date+"    "+row.description.replace(/[\r\n]+/im,"")+"    "+row.amount);
+				}
+			});
+			(tut.container!=null)?tut.container.html(tut.template(tut)):null;
+			(tut.callback!=null)?tut.callback(tut.list):null;
+			tut.__afterAll();
 		}
 	});
+	$.extend(tut,arguments[0]);
 }
 /*
 var psoAdapter={

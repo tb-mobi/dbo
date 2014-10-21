@@ -2,5 +2,11 @@
 	"accounts":{
 		"className":"Accounts"
 		,"template":"account.list"
+		,"object":"accounts"
+	}
+	,"operations":{
+		"className":"Operations"
+		,"template":"operation.list"
+		,"object":"operations"
 	}
 }

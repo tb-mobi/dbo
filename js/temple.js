@@ -11,13 +11,8 @@
 };
 window.psoUrl="/pso/"
 $(function(){
-	$.getJSON("data/navigation.json").success(function(){
-		$("#navTop").html(getTemplate('nav.top')(arguments[0]));
-	});
-	var accounts=null;
-	
 	var addapter=new dbo.PSOAdapter({
-		url:'../pso/'
+		url:'/pso/'
 		,login:"SH"
 		,password:"3855359"
 		,template:getTemplate('user')
