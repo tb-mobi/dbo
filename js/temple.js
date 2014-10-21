@@ -17,7 +17,8 @@ $(function(){
 		,password:"3855359"
 		,template:getTemplate('user')
 		,container:$("#headerUser")
-		,callback:function(){console.debug("started");}
+		//,callback:function(){console.debug("started");}
 	});
 	addapter.signin();
+	//var ex=new dbo.Exception({template:getTemplate('error'),container:$("#content")});
 });

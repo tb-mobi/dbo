@@ -1,0 +1,23 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Перевод исполнен';
+block content
+	.b-content
+		.h-wrap
+			h1.page-title Перевод исполнен
+			h2.page-subtitle Перевод средств со счета на счет успешно выполнен.
+			.wrapper
+				main.main-section--list
+					figure.status.status--success
+						a(href="#" class="status-details")
+							span Подробно
+						a(href="#" class="status-print")
+							span Распечатать
+				article.sub-section
+					p.description-text.description-text--status
+						| Перевод средств между счетами будет исполнен в течении 3 дней. Если этого не произойдет, обратитесь в <a href="#">службу поддержки</a> ТЕМПЛ Банка.
+			a(href="#" class="save-template save-template--status") 
+				span Сохранить платеж в качестве шаблона
+block scripts
+	+script(['common.js'])

@@ -13,8 +13,9 @@ dbo.Object=function(){
 		tut[n]=v;
 	};
 	tut.__afterAll=function(){
+		$.getScript('dist/assets/scripts/common.js');
 		$(window).load();
-		design();
+		//design();
 	};
 };
 dbo.ListObject=function(){
@@ -24,28 +25,60 @@ dbo.ListObject=function(){
 		list:[]
 	});
 };
+dbo.Model=function(){
+	var tut=this;
+	$.extend(tut,new dbo.Object());
+	$.extend(tut,{
+		container:null
+		,template:null
+		,callback:null
+		,show:function(){
+			var obj=(arguments.length)?arguments[0]:tut;
+			(tut.container!=null&&tut.template!=null)?tut.container.html(tut.template(obj)):null;
+			(tut.callback!=null)?tut.callback(obj):null;
+			tut.__afterAll();
+		}
+	});
+	(arguments.length&&arguments[0]!=null&&typeof arguments[0]=="object")?$.extend(tut,arguments[0]):null;
+}
+dbo.Exception=function(){
+	var tut=this;
+	tut.code=0;
+	tut.message="Успешная операция";
+	tut.todo="Оставайтесь с нами";
+	var args=(arguments.length)?arguments[0]:null;$.extend(tut,new dbo.Model(args));
+	//$.extend(tut,new dbo.Model());(arguments.length)?$.extend(tut,arguments[0]):{};
+}
+dbo.Confirm=function(){
+	var tut=this;
+	tut.operation="Перевод";
+	var args=(arguments.length)?arguments[0]:null;$.extend(tut,new dbo.Model(args));
+	//$.extend(tut,new dbo.Model());(arguments.length)?$.extend(tut,arguments[0]):{};
+}
 dbo.Router=function(){
 	var tut=this;
 	tut.adapter=arguments[0];
 	tut.map=null;
 	tut.route=function(href){
+		var obj=tut.getObject(href);
+		(obj!=null)?obj.show(obj):{};
+	}
+	tut.getObject=function(href){
 		var arr=href.split('?');
 		var url=(arr.length>1)?arr[0]:href;
+		console.debug("routing to "+url);
 		var data=(arr.length>1)?"{"+arr[1]+"}":null;
-		var obj=tut.getObject(url);
-		obj.show(data);
-	}
-	tut.getObject=function(url){
 		var link=tut.map[url];
-		var ret=tut.adapter[link.object];
+		if(typeof link=="undefined")return null;
+		var ret=(typeof link.object!="undefined"&&link.object!=null&&link.object!="null")?tut.adapter[link.object]:null;
 		if(typeof ret=='undefined'||ret==null){
-			var params={
-				container:$("#content")
-				,template:getTemplate(link.template)
-			};
+			console.debug("input data ["+data+"]")
+			var params=(data!=null)?$.parseJSON(data):{};
 			$.extend(params,tut.adapter);
+			params.container=$("#content");
+			params.template=getTemplate(link.template);
 			ret=new dbo[link.className](params);
-			tut.adapter[link.object]=ret;
+			(typeof link.object!="undefined"&&link.object!=null&&link.object!="null")?tut.adapter[link.object]=ret:{};
 		}
 		return ret;
 	}
@@ -55,8 +88,8 @@ dbo.Router=function(){
 			event.preventDefault();
 			var href=$(this).attr("href");
 			if(href.length){
-				console.debug("routing to "+href);
 				tut.route(href);
+				$(this).parent().find("a").removeClass("active");
 				$(this).addClass("active");
 			}
 			return false;
@@ -78,6 +111,7 @@ dbo.PSOAdapter=function(){
 		,operations:null
 		,products:new dbo.Products()
 		,router:new dbo.Router(tut)
+		,exception:null
 		,phone:null
 		,names:null
 		,name:{
@@ -188,7 +222,7 @@ dbo.Operations=function(){
 	$.extend(tut,new dbo.ListObject());
 	$.extend(tut,{
 		sessionId:$.cookie('pso_session')
-		,accountId:null
+		,account:null
 		,dateFrom:null
 		,dateTo:null
 		,findById:function(){
@@ -201,24 +235,23 @@ dbo.Operations=function(){
 			return false;
 		}
 		,show:function(){
-			var params=$.parseJSON(arguments[0]);
-			$.extend(params,{sessionid:tut.sessionId});
-			$.getJSON(((tut.url!=null)?tut.url:psoUrl)+"operations/",params).success(function(){
-				psoResponse=(arguments.length>0)?arguments[0]:false;
-				if(!psoResponse)return;
-				tut._list=psoResponse;
-				console.log("Operations for ["+tut.accountId+"]:");
-				for(i in psoResponse){
-					var row=psoResponse[i];
-					console.log("    "+row.date+"    "+row.description.replace(/[\r\n]+/im,"")+"    "+row.amount);
-				}
-			});
 			(tut.container!=null)?tut.container.html(tut.template(tut)):null;
 			(tut.callback!=null)?tut.callback(tut.list):null;
 			tut.__afterAll();
 		}
 	});
 	$.extend(tut,arguments[0]);
+	var params={sessionid:tut.sessionId,account:tut.account};
+	$.getJSON(((tut.url!=null)?tut.url:psoUrl)+"operations/",params).success(function(){
+		psoResponse=(arguments.length>0)?arguments[0]:false;
+		if(!psoResponse)return;
+		tut.list=psoResponse;
+		console.log("Operations for ["+tut.account+"]:");
+		for(i in psoResponse){
+			var row=psoResponse[i];
+			console.log("    "+row.date+"    "+row.description.replace(/[\r\n]+/im,"")+"    "+row.amount);
+		}
+	});
 }
 /*
 var psoAdapter={

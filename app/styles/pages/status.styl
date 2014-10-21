@@ -1,0 +1,102 @@
+.status
+	padding-left 260px
+	position relative
+	min-height 50px
+	display flex
+	flex-direction column
+	// ie10 fix
+	overflow hidden
+	&:before
+		content ''
+		position: absolute;
+		left: 12px; top: 0;
+		sprite($status-succes)
+	@media screen and (max-width: 430px)
+		padding 85px 20px 20px
+		flex-direction row
+		justify-content space-between
+		&:before
+			left: 50%
+			transform: translateX(-50%)
+
+.status--fail
+	&:before
+		sprite($status-fail)
+
+.error-info
+	margin: 5px 0 25px
+
+.error-info-item
+	padding: 5px 0;
+	&:before
+		content: '—'
+		padding-right: 3px
+	a
+		display inline-block
+		text-decoration none
+		border-bottom: 1px dotted
+		&:hover,
+		&:focus,
+		&:active
+			border-color: transparent
+
+
+a[class^="status"] {
+	color: #5a9ae5;
+	padding: 0 2px 2px 28px;
+	text-decoration none
+	position relative
+
+	&:before {
+		content: '';
+		position: absolute;
+		left: 0; top: 2px;
+	}
+
+	span {
+		border-bottom: 1px dotted;
+	}
+
+	&:hover,
+	&:focus,
+	&:active {
+		span { border-bottom: none }
+	}
+}
+
+.status-details {
+	margin-bottom 10px
+	// ie 10 fallback
+	&:before {
+		sprite($small-hamburger)
+	}
+}
+
+.status-print {
+	// ie10 fallback
+	float: right
+	&:before {
+		sprite($print)
+	}
+}
+
+.description-text
+	padding-left 79px
+	font-size 12px
+	line-height 18px
+	min-height 65px
+	position relative
+	a
+		text-decoration none
+		&:hover,
+		&:focus,
+		&:active
+			text-decoration underline
+	&:before
+		content ''
+		position absolute
+		top 0
+		left 0
+		width 65px
+		height 65px
+		background url(../images/clock.png) no-repeat;

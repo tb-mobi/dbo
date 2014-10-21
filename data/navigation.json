@@ -13,17 +13,30 @@
 	  {
 		"id": 2,
 		"name": "Платежи",
-		"href": "payments"
+		"href": "payments",
+		"disabled":true
 	  },
 	  {
 		"id": 3,
 		"name": "Переводы",
-		"href": "transfers"
+		"href": "transfers",
+		"disabled":true
 	  },
 	  {
 		"id": 4,
 		"name": "Банк",
-		"href": "services"
+		"href": "services",
+		"disabled":true
+	  },
+	  {
+		"id": 5,
+		"name": "Тест Exception",
+		"href": "exception?\"code\":\"100\",\"message\":\"unknown\",\"todo\":\"go home\""
+	  },
+	  {
+		"id": 6,
+		"name": "Тест ",
+		"href": "confirmation"
 	  }
 	]
 }

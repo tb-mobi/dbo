@@ -1,52 +1,5 @@
 $(function () {
 	'use strict';
-	design();
-});
-
-$(window).load(function() {
-	set_long_width();
-});
-
-$(window).resize(function() {
-	set_long_width();
-});
-
-function get_space(num) {
-	num+='';
-	num=num.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
-	return num
-}
-
-function getChar(event) {
-	if (event.which == null) {
-		if (event.keyCode < 32) return null;
-			return String.fromCharCode(event.keyCode)
-	}
-
-	if (event.which!=0 && event.charCode!=0) {
-		if (event.which < 32) return null;
-			return String.fromCharCode(event.which)
-	}
-
-	return null;
-}
-
-function set_long_width() {
-	if($('.b-form__input_long').length) {
-		$('.b-form__input_long').each(function() {
-			$(this).width($(this).parent().width()-$(this).parent().find('.b-form__label').width()-15)
-		})
-	}
-	if($('.b-right-menu').length && $(window).width()>=740) {
-		$('.b-right-menu').show();
-	}
-	else if($('.b-right-menu').length && $(window).width()<740) {
-		$('.b-right-menu').hide();	
-	}
-}
-
-window.design=function () {
-	'use strict';
 	$('.js-code').mask("999");
 	$('.js-number-body').mask("999-99-99");
 	$('.js-code').keypress(function(event) {
@@ -182,4 +135,46 @@ window.design=function () {
 			body.fadeIn(250);
 		}
 	})
-};
+});
+
+$(window).load(function() {
+	set_long_width();
+});
+
+$(window).resize(function() {
+	set_long_width();
+});
+
+function get_space(num) {
+	num+='';
+	num=num.replace(/(\d)(?=(\d\d\d)+([^\d]|$))/g, '$1 ');
+	return num
+}
+
+function getChar(event) {
+	if (event.which == null) {
+		if (event.keyCode < 32) return null;
+			return String.fromCharCode(event.keyCode)
+	}
+
+	if (event.which!=0 && event.charCode!=0) {
+		if (event.which < 32) return null;
+			return String.fromCharCode(event.which)
+	}
+
+	return null;
+}
+
+function set_long_width() {
+	if($('.b-form__input_long').length) {
+		$('.b-form__input_long').each(function() {
+			$(this).width($(this).parent().width()-$(this).parent().find('.b-form__label').width()-15)
+		})
+	}
+	if($('.b-right-menu').length && $(window).width()>=740) {
+		$('.b-right-menu').show();
+	}
+	else if($('.b-right-menu').length && $(window).width()<740) {
+		$('.b-right-menu').hide();	
+	}
+}

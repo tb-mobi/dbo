@@ -1,12 +1,82 @@
+.wrapper {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.main-section--list 
+	width: 480px;
+	padding: 25px 10px;
+	background-color: #fff;
+	// for &:before & &:after
+	position: relative;
+	&:before
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 6px;
+		background: url('../images/confirm-list-pattern.png') repeat-x;
+	&:after
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 100%;
+		height: 6px;
+		background: url('../images/confirm-list-pattern-bottom.png') repeat-x;
+	@media screen and (max-width: 510px)
+		width: 100%;
+
+.sub-section
+	margin-left: 14.28571428571429%;
+	max-width: 360px;
+	min-width: 300px;
+	@media screen and (max-width: 1400px)
+		margin-left: 4.28571428571429%
+	@media screen and (max-width: 940px)
+		margin-left: 0;
+		margin-top: 35px;
+		width: 100%
+		min-width: auto;
+
+
+
+.page-subtitle
+	font-size: 14px;
+	color: #000;
+
 .section-title
 	color #343434
 	font-size 18px
 	font-weight 600
 	margin-bottom 18px
-	padding-top: 25px;
+	padding-top: 25px
 	@media screen and (min-width 480px)
 		font-size 24px
 	@media screen and (min-width 760px)
 		font-size 36px
-		padding-top: 34px;
+		padding-top: 34px
 
+.save-template
+	display inline-block
+	margin-left 10px
+	margin-top 14px
+	padding-left 24px
+	position relative
+	text-decoration none
+	span
+		border-bottom 1px dotted
+	&:hover,
+	&:focus,
+	&:active
+		span
+			border-bottom none
+	&:before
+		content ''
+		position absolute
+		top 0
+		left 0
+		sprite($star)
+	@media screen and (max-width: 940px)
+		margin-top: 35px

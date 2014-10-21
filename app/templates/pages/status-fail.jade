@@ -1,0 +1,24 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Ошибка при переводе';
+block content
+	.b-content
+		.h-wrap
+			h1.page-title Что-то пошло не так
+			p.status-error
+				| Код ошибки: <strong class="error-code">490356</strong>. Возможные причины ошибки:
+			ul.error-info
+				li.error-info-item Отсутсвие подключения к интернету
+				li.error-info-item Сбой системы, <a href="#">сообщить службе поддержки</a>
+			.wrapper
+				main.main-section--list
+					figure.status.status--fail
+						a(href="#" class="status-details")
+							span Подробно
+						a(href="#" class="status-print")
+							span Распечатать
+			a(href="#" class="save-template save-template--status") 
+				span Сохранить платеж в качестве шаблона
+block scripts
+	+script(['common.js'])

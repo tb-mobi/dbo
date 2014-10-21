@@ -1,4 +1,15 @@
-<div>
-	<h1>{{cotroller.current.message}}<strong>[{{cotroller.current.code}}]</strong></h1>
-	<p>{{cotroller.current.todo}}</p>
+﻿<div class="h-wrap">
+	<h1 class="page-title">Что-то пошло не так</h1>
+	<p class="status-error">Код ошибки: <strong class="error-code">{{code}}</strong>.  {{message}}. Возможные причины ошибки:</p>
+	<ul class="error-info">
+		<li class="error-info-item">{{todo}}</li>
+		<li class="error-info-item">Сбой системы, <a href="#">сообщить службе поддержки</a>
+		</li>
+	</ul>
+	<div class="wrapper">
+		<main class="main-section--list">
+			<figure class="status status--fail"><a href="#" class="status-details"><span>Подробно</span></a><a href="#" class="status-print"><span>Распечатать</span></a>
+			</figure>
+		</main>
+	</div><a href="#" class="save-template save-template--status"><span>Сохранить платеж в качестве шаблона</span></a>
 </div>
