@@ -3,7 +3,7 @@
 	  {
 		"id": 0,
 		"name": "Главная",
-		"href": "/dbo"
+		"href": "index"
 	  },
 	  {
 		"id": 1,

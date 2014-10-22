@@ -13,4 +13,8 @@
 		"className":"TransferLocal"
 		,"template":"transfer"
 	}
+	,"index":{
+		"className":"MainPage"
+		,"template":"main"
+	}
 }

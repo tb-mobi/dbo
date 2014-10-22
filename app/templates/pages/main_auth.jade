@@ -1,0 +1,158 @@
+extends ../layouts/default
+
+block head
+	- pageTitle = 'Главная';
+block content
+	.b-content
+		.h-wrap
+			.wrapper.main-auth
+				.payment-template
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--megafon
+								img(src="assets/images/megafon.png" alt="" class="mobile-operator")
+								a(href="#") На телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								img(src="assets/images/yota.png" alt="" class="mobile-operator")
+								a(href="#") Маме на телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								img(src="assets/images/yota.png" alt="" class="mobile-operator")
+								a(href="#") Маме на телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								a(href="#") Маме на телефон
+							span.payment-value.payment-value--visa
+								b
+								| ...2489
+						div.payment-action
+							div.payment-action-input--holder
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								a(href="#") Маме на телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder.usd
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								a(href="#") Маме на телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder.euro
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					figure.payment-item
+						header.payment-header
+							h2.payment-title.title--mts
+								a(href="#") Маме на телефон
+							span.payment-value +7 929 566-24-89
+						div.payment-action
+							div.payment-action-input--holder.rub
+								input(type="text" class="text-field payment-action-input")
+							button(type="button" class="btn payment-action-btn") Оплатить
+					a(href="#" class="show-all-template")
+						span Показать все <b class="template-value">8</b> шаблонов
+				div.button-holder
+					a(href="#" class="btn-white btn-templats")
+						span Мои шаблоны
+					a(href="#" class="btn-blue btn-operations")
+						span Частые операции
+				div.content-wrapper
+					section.wallet-info
+						.wallet-holder
+							header.wallets-value
+								img(src="assets/images/2tbank.png" alt="" class="bank-logo")
+								strong.wallets-money На счетаx: 
+									span 2 157 500
+										b.rubl o
+							.wallet-item
+								span.wallet-name
+									a(href="#") Позитрон
+								strong.wallet-number
+									| 40817978202000002119
+									span Зарплатный
+								div.wallet-value
+									span.wallet-value--current 192 000
+										b.rubl o
+							.wallet-item
+								span.wallet-name
+									a(href="#") Позитрон
+								strong.wallet-number
+									| 40817978202000002119
+								div.wallet-value
+									span.wallet-value--current 192 000 $
+									span.wallet-value--translated (1 920 400
+										b.rubl o
+										| )
+						.ad
+							h2.ad-title Не хватает до зарплаты? Попробуйте наш «<a href="#">Кредит на карту</a>»
+							p.ad-text Единая ставка 19,9%, нужен только паспорт, 3% минимальный платеж «кредитиные каникулы», на карту любого банка.
+						.operations-holder
+							header.operations-header
+								h2.operations-title Последние операции
+								a(href="#" class="operations-more") По всем счетам
+							.operations-item
+								time(datetime="14.10.2014 12:00:35" class="operations-time succes") 14.10.2014
+									span 12:00:35
+								strong.operations-name Пополнение счет <a href="#">На квартиру</a>
+								span.operations-value 50 000
+									b.rubl o
+							.operations-item
+								time(datetime="14.10.2014 12:00:35" class="operations-time fail") 14.10.2014
+									span 12:00:35
+								strong.operations-name Пополнение счет <a href="#">На квартиру</a>
+								span.operations-value.euro 50 000
+									b.rubl o
+							.operations-item
+								time(datetime="14.10.2014 12:00:35" class="operations-time processing") 14.10.2014
+									span 12:00:35
+								strong.operations-name Пополнение счет <a href="#">На квартиру</a>
+								span.operations-value.usd 50 000
+									b.rubl o
+					aside.side-bar
+						div.operations
+							h2 Частые операции
+							a(href="#" class="operations-link") Мобильный телефон
+							a(href="#" class="operations-link") Интернет
+							a(href="#" class="operations-link") Оплата ЖКХ
+							a(href="#" class="operations-link") Между своими счетами
+							a(href="#" class="operations-link") Другому клиенту банка
+						div.messages
+							a(href="#" class="messages-title") Сообщения
+								span.messages-value 1
+							p.message-text Добро пожаловать в ТЕМПЛ! Мы рады вас приветствовать
+						div.currency-rate
+							a(href="#" class="rate-title") Курс валюты
+							div.rate-item.dollar
+								span.growup $ 40.1523 
+								span.fall 40.3412
+							div.rate-item.euro
+								span.growup € 40.1523
+								span.fall 40.3412
+block scripts
+	+script(['common.js'])

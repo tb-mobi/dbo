@@ -1,3 +1,26 @@
+$(function() {
+
+	// var templateHolder = $('.payment-template'),
+	// 	templateHolderHeight = $('.payment-template').css('height'),
+	// 	templateToggle = $('.show-all-template');
+	// templateHolder.addClass('template-hidden');
+	// console.log(templateHolderHeight);
+
+	// templateToggle.on('click', function() {
+	// 	if (templateHolder.hasClass('template-hidden')) {
+	// 		templateHolder.attr('style', 'height: ' + templateHolderHeight);
+	// 		setTimeout(function() {
+	// 			templateHolder.removeClass('template-hidden');
+	// 		}, 1000)
+	// 	} else {
+	// 		templateHolder.addClass('template-hidden');
+	// 		templateHolder.css({'height': '198px'})
+	// 	}
+	// });
+
+
+});
+
 $(function () {
 	'use strict';
 	$('.js-code').mask("999");

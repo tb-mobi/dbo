@@ -1,0 +1,510 @@
+.payment-template {
+	display flex
+	flex-wrap: wrap
+	width: 100%
+	padding: 0 20px 50px
+	padding-right 0;
+	background-color: #6adcc0;
+	background-image: linear-gradient(to left, #6adcc0 0%, #5cbcf3 100%);
+	position: relative;
+	clearfix()
+	transition: height .6s;
+
+	&.template-hidden {
+		overflow: hidden;
+		height: 198px;
+	}
+}
+
+@media screen and (max-width 780px) {
+	.payment-template {
+		display none
+	}
+}
+
+.payment-item {
+	width: 200px;
+	// old browser fall back
+	float left
+	border-radius: 5px;
+	margin-right: 20px;
+	background-color #fff
+	padding: 12px 20px 15px;
+	margin-top: 35px;
+
+	&:last-of-type {
+		margin-right: 0;
+	}
+}
+
+.payment-title {
+	font-size: 12px;
+	font-weight 400
+	text-align: center;
+	margin-bottom: 0;
+	position relative
+
+	&:hover,
+	&:focus,
+	&:active {
+		text-decoration: none;
+	}
+}
+
+.payment-value {
+	display block
+	font-size: 18px;
+	text-align: center
+	padding: 15px 0;
+	white-space: nowrap;
+	overflow: hidden;
+	position: relative;
+
+	&--visa {
+		b {
+			display inline-block
+			margin-right 5px
+			sprite($visa2)
+		}
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		width: 15px;
+		top: 0;
+		right: 0;
+		height: 100%;
+		background: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 100%);
+	}
+}
+
+.payment-action {
+	clearfix()
+	padding: 5px 0;
+}
+
+.payment-action-input {
+	width: 70px;
+	height: 26px;
+	padding-left: 9px
+	padding-right 15px
+
+	&--holder {
+		float: left;
+		width: 70px;
+		height: 26px;
+		position relative
+
+		&:after {
+			font-size: 14px;
+			position absolute
+			right: 8px;
+			top: 50%;
+			transform translateY(-50%)
+			color: #000
+		}
+
+		&.rub {
+			&:after {
+				content: 'o'
+				font-family: 'als_rublregular';
+			}
+		}
+
+		&.usd {
+			&:after {
+				content: '$'
+			}
+		}
+
+		&.euro {
+			&:after {
+				content '€'
+			}
+		}
+	}
+}
+
+.payment-action-btn {
+	float: right;
+	width: 72px;
+	height: 26px;
+	font-size: 12px;
+	padding: 0;
+}
+
+.show-all-template
+	position: absolute;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	color: #fff;
+	text-decoration: none;
+	&:after
+		content: '↓'
+		display inline-block
+		transform: translateX(3px)
+	span
+		border-bottom: 1px dotted;
+		&:hover,
+		&:focus,
+		&:active
+			border-bottom 1px dotted transparent;
+
+.wallet-holder
+	border: 1px solid #d0d0d0
+	border-radius 10px;
+	overflow: hidden
+
+.operations-holder
+	@extend .wallet-holder;
+
+.wallets-value
+	background-color: #f0f0f0;
+	padding: 30px 20px;
+	position: relative;
+	clearfix()
+	@media screen and (max-width: 510px)
+		padding 8px
+
+.operations-header
+	@extend .wallets-value;
+
+.wallets-money
+	float: right
+	font-size: 18px;
+	font-weight 400
+	span
+		font-size: 24px
+		font-weight 700
+	@media screen and (max-width: 510px)
+		font-size: 14px
+		span
+			font-size: 18px;
+
+
+.bank-logo
+	max-width: 100%
+	max-height: 100%;
+	position: absolute;
+	top: 50%;
+	left: 20px;
+	transform: translateY(-50%)
+
+.wallet-info
+	float: left;
+	width: 61.49253731343284%;
+	@media screen and (max-width: 920px)
+		width 69.59459459459459%
+	@media screen and (max-width 780px)
+		width: 100%;
+		float none
+
+.side-bar
+	float: right;
+	width: 295px;
+	@media screen and (max-width: 920px)
+		width: 190px
+	@media screen and (max-width 780px)
+		width: 100%;
+		margin-top 20px
+		float: none
+
+
+.button-holder
+	width: 100%;
+	display flex
+	justify-content center
+	display none
+	margin-top 20px
+	@media screen and (max-width 780px)
+		display flex
+	a:nth-child(2)
+		margin-left: 20px
+
+.btn-operations,
+.btn-templats
+	font-size: 14px
+	text-decoration none
+	width: 140px
+	height: 30px;
+	line-height 30px
+	text-align center
+	border-radius 3px
+	span
+		border-bottom 1px dotted
+
+.btn-templats
+	color: #fff
+	background: linear-gradient(to right, rgba(92,188,243,1) 0%,rgba(106,220,192,1) 100%);
+
+.btn-operations
+	line-height 28px
+	border: 1px solid
+	background-color: #fff
+
+
+.content-wrapper
+	margin-top: 40px;
+	clearfix()
+
+.wallet-item
+	padding: 20px 15px 20px 20px;
+	border-top: 1px solid #dbdbdb;
+	clearfix()
+	@media screen and (max-width: 510px)
+		padding 5px
+		min-height: 40px
+
+.wallet-name
+	float: left
+	font-size: 18px
+	color: #ff6000;
+	width: 30.76923076923077%;
+	&:hover,
+	&:focus,
+	&:active
+		text-decoration none
+	@media screen and (max-width: 510px)
+		font-size: 14px
+		width: auto
+		padding-right 5px
+
+.wallet-value
+	float right
+	font-size: 18px
+	font-weight 700
+	&--translated
+		display block
+		font-size: 14px
+		color: #767676;
+	@media screen and (max-width: 510px)
+		font-size: 14px
+		&--translated
+			font-size: 10px
+
+.wallet-number
+	display inline-block
+	font-size: 14px
+	font-weight 400
+	span
+		display block
+		font-size: 12px;
+		color: #767676;
+	@media screen and (max-width 510px)
+		width: 60px;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+		overflow: hidden;
+		direction: rtl;
+		span
+			display none
+
+.ad
+	margin: 40px 0;
+	border-radius 8px;
+	overflow hidden
+	position relative
+	height: 80px
+	padding-left: 80px;
+	border: 1px dashed #dbdbdb
+	display flex
+	flex-direction column
+	justify-content: center
+	&:before
+		content ''
+		position absolute
+		left 20px
+		top: 50%
+		transform: translateY(-50%)
+		width: 41px
+		height 41px
+		background: url(../images/card.png) no-repeat
+		background-size cover
+	&-title
+		font-size: 14px
+		color: #000
+		margin 0
+		padding-bottom 7px
+	&-text
+		font-size 12px
+	@media screen and (max-width: 510px)
+		padding: 20px 0 20px 80px;
+		height: auto
+
+.operations
+	&-title
+		color: #000
+		font-size: 24px;
+		margin: 0
+		float: left;
+	&-more
+		float: right
+		text-decoration none
+		border-bottom 1px dotted
+		font-size: 14px
+		padding-top: 6px
+		&:hover,
+		&:focus,
+		&:active
+			border-color: transparent
+	&-item
+		position relative
+		height: 80px
+		display flex
+		align-items: center
+		border-top: 1px solid #dbdbdb;
+		padding: 0 20px
+	&-time
+		display inline-block
+		width: 30.76923076923077%;
+		padding-left 30px
+		position relative
+		font-size: 14px
+		span
+			display block
+			color #767676
+			padding-top 3px
+			font-size: 12px
+		&:before
+			content ''
+			position absolute
+			top: 4px;
+			left: 0;
+		&.succes
+			&:before
+				sprite($operation-succes)
+		&.fail
+			&:before
+				sprite($operation-fail)
+		&.processing
+			&:before
+				sprite($operation-processing)
+	&-name
+		font-weight 400
+	&-value
+		position: absolute;
+		right: 20px;
+		top: 50%;
+		transform: translateY(-50%);
+	@media screen and (max-width: 510px)
+		&-header
+			padding 8px
+		&-title
+			font-size: 14px
+		&-more
+			font-size: 12px
+			padding-top 0
+		&-item
+			flex-direction column
+			align-items flex-start
+			padding: 10px 20px
+			height: auto
+		&-name,
+		&-value
+			padding-left 30px
+			padding-top: 10px
+		&-value
+			position static
+			right auto
+			top auto
+			transform none
+
+
+.operations
+	border: 2px solid #edba77
+	border-radius 12px
+	padding: 30px 35px;
+	overflow: hidden;
+	h2
+		color: #343434
+		font-size: 18px
+		padding-bottom 13px
+		margin: 0
+	&-link
+		display block
+		padding: 8px 0
+
+
+
+.messages
+	margin: 40px 0
+	border-radius 9px
+	padding: 15px 25px
+	border: 1px solid #b7b7b7
+	&-title
+		display inline-block
+		padding-right: 35px
+		position relative
+	&-value
+		display flex
+		width: 20px
+		height 20px
+		justify-content center
+		align-items center
+		border-radius 50%
+		position absolute
+		top: -1px
+		right: 0
+		color: #fff
+		font-size: 12px
+		background: linear-gradient(to bottom, rgba(250,162,9,1) 0%,rgba(255,101,5,1) 100%);
+
+.message-text
+	padding-top 10px
+	white-space nowrap
+	width: 100%
+	overflow hidden
+	position relative
+	&:after
+		content ''
+		position: absolute;
+		top: 0;
+		right: 0;
+		width: 20px;
+		height: 100%;
+		background: linear-gradient(to right, rgba(255,255,255,0) 0%, #fff 100%);
+
+.currency-rate
+	padding-left 30px
+
+.rate-title
+	display inline-block
+	padding-left 12px
+	margin-bottom 15px
+
+.rate-item
+	margin-bottom 15px
+	span
+		display inline-block
+		margin-right 35px
+		font-size: 14px;
+		padding-right 12px
+		position relative
+		&.growup
+			&:after 
+				content '↑'
+				position absolute
+				top: 0;
+				right: 0;
+				transform: translateY(-2px);
+				color: #28be28;
+		&.fall
+			&:after
+				content '↓'
+				position absolute
+				top: 0;
+				right: 0;
+				transform: translateY(-2px);
+				color #e92c2c
+	.arrow
+		display inline-block
+		padding-left 3px
+
+.mobile-operator
+	position absolute
+	top: 0
+	left: 0
+	max-width: 100%;
+	max-height 100%;

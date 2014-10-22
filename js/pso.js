@@ -67,10 +67,13 @@ dbo.Router=function(){
 	var tut=this;
 	tut.adapter=arguments[0];
 	tut.map=null;
+	tut.current=null;
 	tut.route=function(href){
 		try{
 			var obj=tut.getObject(href);
 			(obj!=null)?obj.show(obj):{};
+			tut.current=obj;
+			tut.catcha();
 		}
 		catch(e){
 			tut.throwException(e);
@@ -135,8 +138,13 @@ dbo.Router=function(){
 		var ex=new dbo.Exception(p);
 		ex.show();
 	}
-	$.getJSON("cfg/mapping.json").success(function(){tut.map=arguments[0];});
-	tut.catcha();
+	$.getJSON("cfg/mapping.json").success(function(){
+		tut.map=arguments[0];
+		if(tut.current==null){
+			tut.route("index");
+			$("a[href='index']").addClass("curr");
+		}
+	});
 }
 dbo.PSOAdapter=function(){
 	var tut=this;
@@ -146,7 +154,6 @@ dbo.PSOAdapter=function(){
 		,login:null
 		,password:null
 		,accounts:null
-		,operations:null
 		,products:new dbo.Products()
 		,router:new dbo.Router(tut)
 		,exception:null
@@ -230,7 +237,8 @@ dbo.Accounts=function(){
 	var tut=this;
 	$.extend(tut,new dbo.ListObject());
 	$.extend(tut,{
-		show:function(){
+		names:null
+		,show:function(){
 			(tut.container!=null)?tut.container.html(tut.template(tut)):null;
 			tut.__afterAll();
 		}
@@ -256,6 +264,28 @@ dbo.Accounts=function(){
 	tut.init();
 }
 dbo.TransferLocal=function(){
+	var tut=this;
+	var args=(arguments.length)?arguments[0]:null;
+	tut.accounts=null;
+	tut.current=null;
+	tut.another=null;
+	$.extend(tut,new dbo.Model(args));
+	tut.show=function(){
+		tut.accounts=new dbo.Accounts({
+			products:tut.products
+			,sessionId:tut.sessionId
+			,names:tut.names
+			,callback:function(){
+				tut.current=tut.accounts.list[0];
+				tut.current=tut.accounts.list[tut.accounts.list.length-1];
+				(tut.container!=null)?tut.container.html(tut.template(tut)):null;
+				(tut.callback!=null)?tut.callback(tut.list):null;
+				tut.__afterAll();
+			}
+		});
+	};
+}
+dbo.MainPage=function(){
 	var tut=this;
 	var args=(arguments.length)?arguments[0]:null;
 	tut.accounts=null;
